@@ -15,6 +15,52 @@
       padding: 0;
     }
 
+    /* ── SPLASH SCREEN ─────────────────────────────────── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: #fefefe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    #splash-logo {
+      max-width: 320px;
+      width: 60%;
+      animation: splashFade 1s ease 0.8s forwards;
+      opacity: 1;
+    }
+
+    #splash-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes splashFade {
+      to { opacity: 0; }
+    }
+
+    #splash.done {
+      animation: splashOut 0.4s ease forwards;
+    }
+
+    @keyframes splashOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    #page {
+      opacity: 0;
+      animation: pageIn 0.5s ease 1.6s forwards;
+    }
+
+    @keyframes pageIn {
+      to { opacity: 1; }
+    }
+
     :root {
       --bg:       #fefefe;
       --primary:  #2D3B28;
@@ -395,6 +441,14 @@
 </head>
 <body>
 
+  <!-- SPLASH -->
+  <div id="splash">
+    <div id="splash-logo">
+      <img src="assets/overlay.png" alt="" />
+    </div>
+  </div>
+
+  <div id="page">
   <!-- NAV -->
   <nav>
     <div class="wrap">
@@ -539,5 +593,16 @@
     </div>
   </footer>
 
+  </div><!-- end #page -->
+
+  <script>
+    const splash = document.getElementById('splash');
+    splash.addEventListener('animationend', (e) => {
+      if (e.target === document.getElementById('splash-logo')) {
+        splash.classList.add('done');
+        splash.addEventListener('animationend', () => splash.remove(), { once: true });
+      }
+    });
+  </script>
 </body>
 </html>
