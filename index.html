@@ -15,51 +15,21 @@
       padding: 0;
     }
 
-    /* ── SPLASH SCREEN ─────────────────────────────────── */
-    #splash {
+    /* ── BACKGROUND ────────────────────────────────────── */
+    .site-bg {
       position: fixed;
       inset: 0;
-      background: #fefefe;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      pointer-events: none;
-    }
-
-    #splash-logo {
-      max-width: 320px;
-      width: 60%;
-      transform: translateY(-35%);
-      animation: splashFade 1s ease 0.8s forwards;
-      opacity: 1;
-    }
-
-    #splash-logo img {
       width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    @keyframes splashFade {
-      to { opacity: 0; }
-    }
-
-    #splash.done {
-      animation: splashOut 0.4s ease forwards;
-    }
-
-    @keyframes splashOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    #page {
-      opacity: 0;
-      animation: pageIn 0.5s ease 1.6s forwards;
-    }
-
-    @keyframes pageIn {
-      to { opacity: 1; }
+      height: 100%;
+      background-image: url('assets/background.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.08;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
+      mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     :root {
@@ -245,49 +215,28 @@
       border-bottom: none;
     }
 
-    /* ── VIDEO ─────────────────────────────────────────── */
-    .video-section {
+    /* ── CLIENTS ───────────────────────────────────────── */
+    .clients-section {
       padding: 3rem 0 0;
-      position: relative;
     }
 
-    .video-bg {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('assets/background.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.08;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
-      mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
-      pointer-events: none;
-      z-index: -1;
+    .clients-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
     }
 
-    .video-caption {
-      font-family: 'Jost', sans-serif;
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--muted);
-      margin-top: 1rem;
+    .client-logo {
+      width: 160px;
+      height: 80px;
+      object-fit: contain;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
     }
 
-    .video-wrapper {
-      width: 100%;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      background: #000;
-    }
-
-    .video-wrapper video,
-    .video-wrapper iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
+    .client-logo:hover {
+      opacity: 1;
     }
 
     /* ── SECTION SHARED ────────────────────────────────── */
@@ -442,12 +391,7 @@
 </head>
 <body>
 
-  <!-- SPLASH -->
-  <div id="splash">
-    <div id="splash-logo">
-      <img src="assets/overlay.png" alt="" />
-    </div>
-  </div>
+  <div class="site-bg"></div>
 
   <div id="page">
   <!-- NAV -->
@@ -493,16 +437,14 @@
 
       </div>
 
-      <!-- VIDEO — place your demo file at assets/demo.mp4, or swap the <video> for an <iframe> if using Loom/YouTube -->
-      <div class="video-section">
-        <div class="video-bg"></div>
-        <p class="section-label">In Action</p>
-        <div class="video-wrapper">
-          <video controls preload="metadata">
-            <source src="assets/demo.mp4" type="video/mp4" />
-          </video>
+      <div class="clients-section">
+        <p class="section-label">Built For</p>
+        <div class="clients-grid">
+          <img src="assets/logo-urbanek.png" alt="Urbanek Law" class="client-logo" />
+          <img src="assets/logo-vatra.png" alt="Vatra Homes" class="client-logo" />
+          <img src="assets/logo-silverguides.png" alt="Silver Guides" class="client-logo" />
+          <img src="assets/logo-blossom.avif" alt="Blossom" class="client-logo" style="width:130px;height:65px;filter:grayscale(1)" />
         </div>
-        <p class="video-caption">AI admin system built for Urbanek Law — handling scheduling, follow-ups, and internal requests automatically.</p>
       </div>
 
     </div>
@@ -596,14 +538,5 @@
 
   </div><!-- end #page -->
 
-  <script>
-    const splash = document.getElementById('splash');
-    splash.addEventListener('animationend', (e) => {
-      if (e.target === document.getElementById('splash-logo')) {
-        splash.classList.add('done');
-        splash.addEventListener('animationend', () => splash.remove(), { once: true });
-      }
-    });
-  </script>
 </body>
 </html>
