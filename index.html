@@ -3,8 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ArbutusLabs</title>
+  <title>Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law in Vancouver, BC</title>
+  <meta name="description" content="Arbutus Labs builds and maintains custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups — so you stay focused on clients." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="canonical" href="https://arbutuslabs.ca/" />
+  <meta name="theme-color" content="#2D3B28" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law" />
+  <meta property="og:description" content="Custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://arbutuslabs.ca/" />
+  <meta property="og:image" content="https://arbutuslabs.ca/assets/logo.png" />
+  <meta property="og:site_name" content="Arbutus Labs" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law" />
+  <meta name="twitter:description" content="Custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups." />
+  <meta name="twitter:image" content="https://arbutuslabs.ca/assets/logo.png" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Arbutus Labs",
+    "description": "Arbutus Labs builds and maintains custom AI systems for businesses in trades, real estate, and law — automating admin, scheduling, follow-ups, and internal requests.",
+    "url": "https://arbutuslabs.ca/",
+    "logo": "https://arbutuslabs.ca/assets/logo.png",
+    "image": "https://arbutuslabs.ca/assets/logo.png",
+    "email": "tyson@arbutuslabs.ca",
+    "telephone": "+1-236-979-1818",
+    "founder": {
+      "@type": "Person",
+      "name": "Tyson Chernen",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Queen's University"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vancouver",
+      "addressRegion": "BC",
+      "addressCountry": "CA"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.2827,
+        "longitude": -123.1207
+      },
+      "geoRadius": "500 km"
+    },
+    "knowsAbout": ["AI Automation", "Business Process Automation", "Custom AI Systems", "Knowledge Systems", "Workflow Automation"],
+    "priceRange": "$$"
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -40,7 +94,9 @@
       --border:   #D6CFC2;
     }
 
-    html { font-size: 16px; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    :target { scroll-margin-top: 40px; }
+    ::selection { background: var(--accent); color: var(--bg); }
 
     body {
       background: var(--bg);
@@ -242,7 +298,27 @@
     /* ── SECTION SHARED ────────────────────────────────── */
     section {
       padding: 4rem 0;
-      border-top: 1px solid var(--border);
+      border-top: none;
+      position: relative;
+    }
+
+    /* ── ANIMATED SECTION DIVIDERS ─────────────────────── */
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: left;
+      width: 100%;
+      max-width: 900px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--border), transparent);
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    section.line-visible::before {
+      transform: translateX(-50%) scaleX(1);
     }
 
     .section-label {
@@ -367,6 +443,252 @@
 
     footer .info a:hover { color: var(--primary); }
 
+    /* ── SCROLL REVEAL ────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1),
+                  transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── HOVER MICRO-INTERACTIONS ─────────────────────── */
+    .what-grid > div {
+      transition: transform 0.35s ease;
+    }
+    .what-grid > div:hover {
+      transform: translateY(-3px);
+    }
+    .what-grid > div:hover .what-item {
+      width: 48px;
+      transition: width 0.35s ease;
+    }
+    .what-item {
+      transition: width 0.35s ease;
+    }
+
+    .who-item {
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+    .who-item:hover {
+      color: var(--accent);
+      padding-left: 0.5rem;
+    }
+
+    .step {
+      transition: transform 0.35s ease;
+    }
+    .step:hover {
+      transform: translateY(-3px);
+    }
+    .step:hover .step-num {
+      color: var(--primary);
+    }
+    .step-num {
+      transition: color 0.35s ease;
+    }
+
+    /* ── CONTACT ───────────────────────────────────────── */
+    .contact-section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: left;
+      width: 100%;
+      max-width: 900px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--border), transparent);
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-section.line-visible::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-intro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-intro p {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .contact-detail svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .contact-detail span {
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .contact-detail a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact-detail a:hover { color: var(--accent); }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--primary);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 1rem 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      resize: none;
+    }
+
+    .contact-form select {
+      appearance: none;
+      color: var(--muted);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235C6B57' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+
+    .contact-form select:focus {
+      color: var(--primary);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:focus + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+      top: -0.5rem;
+      left: 0.7rem;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent);
+      background: var(--bg);
+      padding: 0 0.3rem;
+    }
+
+    .contact-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.15rem;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form .btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-form .btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    .contact-form .btn-sent {
+      background: var(--accent);
+    }
+
+    .contact-form .btn:disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
+
     /* ── RESPONSIVE ────────────────────────────────────── */
     @media (max-width: 640px) {
       .hero-grid {
@@ -386,6 +708,9 @@
       .steps { grid-template-columns: 1fr; gap: 2rem; }
 
       .who-grid { grid-template-columns: 1fr; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-form .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -397,7 +722,7 @@
   <!-- NAV -->
   <nav>
     <div class="wrap">
-      <img src="assets/logo.png" alt="ArbutusLabs" />
+      <img src="assets/logo.png" alt="Arbutus Labs — AI automation for trades, real estate, and law in Vancouver, BC" />
       <a href="mailto:tyson@arbutuslabs.ca" class="email">tyson@arbutuslabs.ca</a>
     </div>
   </nav>
@@ -409,15 +734,15 @@
 
         <!-- Left: headline, subline, CTA -->
         <div class="hero-left">
-          <h1>Your time is worth too much to spend on admin</h1>
-          <p>Arbutus Labs builds and maintains AI systems for small businesses in trades, real estate, and law — so the admin runs itself and you stay focused on clients.</p>
-          <a href="mailto:tyson@arbutuslabs.ca" class="btn">Start with a free conversation</a>
+          <h1 class="reveal">Your time is worth too much to spend on admin</h1>
+          <p class="reveal reveal-d1">Arbutus Labs builds and maintains AI systems for businesses in trades, real estate, and law — so the admin runs itself and you stay focused on clients.</p>
+          <a href="#contact" class="btn reveal reveal-d2">Start with a free conversation</a>
         </div>
 
         <!-- Right: portrait photo + profile card -->
-        <div class="hero-right">
+        <div class="hero-right reveal reveal-d2">
           <!-- Place your portrait photo at assets/photo.jpg -->
-          <img src="assets/photo.jpg" alt="Tyson Chernen" class="hero-photo" />
+          <img src="assets/photo.jpg" alt="Tyson Chernen, founder of Arbutus Labs — AI automation consultant in Vancouver" class="hero-photo" />
           <div class="profile-card">
             <div class="card-name">Tyson Chernen</div>
             <div class="card-title">
@@ -438,12 +763,12 @@
       </div>
 
       <div class="clients-section">
-        <p class="section-label">Built For</p>
-        <div class="clients-grid">
-          <img src="assets/logo-urbanek.png" alt="Urbanek Law" class="client-logo" />
-          <img src="assets/logo-vatra.png" alt="Vatra Homes" class="client-logo" />
-          <img src="assets/logo-silverguides.png" alt="Silver Guides" class="client-logo" />
-          <img src="assets/logo-blossom.avif" alt="Blossom" class="client-logo" style="width:130px;height:65px;filter:grayscale(1)" />
+        <p class="section-label reveal">Built For</p>
+        <div class="clients-grid reveal reveal-d1">
+          <img src="assets/logo-urbanek.png" alt="Urbanek Law — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
+          <img src="assets/logo-vatra.png" alt="Vatra Homes — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
+          <img src="assets/logo-silverguides.png" alt="Silver Guides — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
+          <img src="assets/logo-blossom.avif" alt="Blossom — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" style="width:130px;height:65px;filter:grayscale(1)" />
         </div>
       </div>
 
@@ -453,10 +778,10 @@
   <!-- WHAT WE DO -->
   <section>
     <div class="wrap">
-      <p class="section-label">What We Do</p>
+      <p class="section-label reveal">What We Do</p>
       <div class="what-grid">
 
-        <div>
+        <div class="reveal">
           <div class="what-item"></div>
           <div class="what-item-inner">
             <h3>Handle the repetitive work</h3>
@@ -464,7 +789,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="reveal reveal-d1">
           <div class="what-item"></div>
           <div class="what-item-inner">
             <h3>AI that knows your business</h3>
@@ -472,7 +797,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="reveal reveal-d2">
           <div class="what-item"></div>
           <div class="what-item-inner">
             <h3>Always improving</h3>
@@ -487,12 +812,12 @@
   <!-- WHO WE WORK WITH -->
   <section>
     <div class="wrap">
-      <p class="section-label">Who We Work With</p>
+      <p class="section-label reveal">Who We Work With</p>
       <div class="who-grid">
-        <div class="who-item">Trades companies — contractors, plumbers, electricians</div>
-        <div class="who-item">Real estate agents &amp; brokerages</div>
-        <div class="who-item">Law firms &amp; professional services</div>
-        <div class="who-item">Any small business where admin is eating your day</div>
+        <div class="who-item reveal">Trades companies — contractors, plumbers, electricians</div>
+        <div class="who-item reveal reveal-d1">Real estate agents &amp; brokerages</div>
+        <div class="who-item reveal reveal-d2">Law firms &amp; professional services</div>
+        <div class="who-item reveal reveal-d3">Any business where admin is eating your day</div>
       </div>
     </div>
   </section>
@@ -500,22 +825,22 @@
   <!-- HOW IT WORKS -->
   <section>
     <div class="wrap">
-      <p class="section-label">How It Works</p>
+      <p class="section-label reveal">How It Works</p>
       <div class="steps">
 
-        <div class="step">
+        <div class="step reveal">
           <div class="step-num">1</div>
           <h3>Free intro call</h3>
           <p>We sit down, learn how your business runs, and find where time is being lost. No pitch — just a conversation.</p>
         </div>
 
-        <div class="step">
+        <div class="step reveal reveal-d1">
           <div class="step-num">2</div>
           <h3>We build</h3>
           <p>Custom systems designed around your workflow, set up and running within weeks. You see it before it goes live.</p>
         </div>
 
-        <div class="step">
+        <div class="step reveal reveal-d2">
           <div class="step-num">3</div>
           <h3>We stay on</h3>
           <p>Monthly check-ins, system updates, and improvements as AI evolves and your business grows. We're your person for this — ongoing, not one-and-done.</p>
@@ -524,6 +849,72 @@
       </div>
     </div>
   </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p class="section-label reveal">Get In Touch</p>
+          <h2 class="reveal">Ready to get your<br>time back?</h2>
+          <p class="reveal reveal-d1">No pitch, no pressure. Just a conversation about where AI could help your business run smoother.</p>
+          <div class="contact-details reveal reveal-d2">
+            <div class="contact-detail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div>
+                <strong><a href="mailto:tyson@arbutuslabs.ca">tyson@arbutuslabs.ca</a></strong>
+                <span>Email Anytime</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div>
+                <strong><a href="tel:+12369791818">(236) 979-1818</a></strong>
+                <span>Call or Text</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <strong>Vancouver, BC</strong>
+                <span>Serving Western Canada</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form reveal reveal-d1" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="name" required placeholder=" " />
+              <label for="name">Full Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" required placeholder=" " />
+              <label for="email">Email Address</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <select id="interest" required>
+              <option value="" disabled selected>What are you looking for?</option>
+              <option>AI Systems &amp; Automation</option>
+              <option>Business Process Design</option>
+              <option>Custom Integrations</option>
+              <option>Knowledge Systems</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="5" required placeholder=" "></textarea>
+            <label for="message">Tell us about your business</label>
+          </div>
+          <button type="submit" class="btn">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -538,5 +929,59 @@
 
   </div><!-- end #page -->
 
+  <script>
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Animated Section Dividers ──
+    const lineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('line-visible');
+          lineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('section, .contact-section').forEach(el => lineObserver.observe(el));
+
+    // ── Smooth Scroll to Contact ──
+    document.querySelectorAll('a[href="#contact"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('contact');
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 40;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Contact Form ──
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.textContent = 'Message Sent!';
+        btn.classList.add('btn-sent');
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('btn-sent');
+          btn.disabled = false;
+          contactForm.reset();
+        }, 3000);
+      });
+    }
+  </script>
 </body>
 </html>
