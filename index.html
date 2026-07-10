@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law in Vancouver, BC</title>
-  <meta name="description" content="Arbutus Labs builds and maintains custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups — so you stay focused on clients." />
+  <meta name="description" content="Arbutus Labs builds and maintains custom AI systems for builders, real estate, and law firms in Vancouver — invoice processing, real-time budget tracking, and back-office automation inside the tools you already use." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="canonical" href="https://arbutuslabs.ca/" />
   <meta name="theme-color" content="#2D3B28" />
   <!-- Open Graph -->
   <meta property="og:title" content="Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law" />
-  <meta property="og:description" content="Custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups." />
+  <meta property="og:description" content="Custom AI systems for builders, real estate, and law firms in Vancouver — invoice processing, budget tracking, and back-office automation inside the tools you already use." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://arbutuslabs.ca/" />
   <meta property="og:image" content="https://arbutuslabs.ca/assets/logo.png" />
@@ -18,7 +18,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Arbutus Labs | AI Automation for Trades, Real Estate &amp; Law" />
-  <meta name="twitter:description" content="Custom AI systems for trades, real estate, and law firms in Vancouver. Automate admin, scheduling, and follow-ups." />
+  <meta name="twitter:description" content="Custom AI systems for builders, real estate, and law firms in Vancouver — invoice processing, budget tracking, and back-office automation inside the tools you already use." />
   <meta name="twitter:image" content="https://arbutuslabs.ca/assets/logo.png" />
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -26,7 +26,7 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Arbutus Labs",
-    "description": "Arbutus Labs builds and maintains custom AI systems for businesses in trades, real estate, and law — automating admin, scheduling, follow-ups, and internal requests.",
+    "description": "Arbutus Labs builds and maintains custom AI systems for businesses in trades, real estate, and law — invoice processing, real-time budget tracking, and back-office automation inside the tools clients already use.",
     "url": "https://arbutuslabs.ca/",
     "logo": "https://arbutuslabs.ca/assets/logo.png",
     "image": "https://arbutuslabs.ca/assets/logo.png",
@@ -61,7 +61,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -71,31 +71,33 @@
 
     /* ── BACKGROUND ────────────────────────────────────── */
     .site-bg {
-      position: fixed;
-      inset: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 110vh;
       background-image: url('assets/background.png');
       background-size: cover;
-      background-position: center;
+      background-position: 70% top;
       background-repeat: no-repeat;
-      opacity: 0.08;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
-      mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 50%);
+      opacity: 0.1;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 45%, black 60%, transparent 95%);
+      mask-image: linear-gradient(to bottom, transparent 0px, transparent 80px, black 45%, black 60%, transparent 95%);
       pointer-events: none;
       z-index: -1;
     }
 
     :root {
       --bg:       #fefefe;
+      --tint:     #F7F5F0;
       --primary:  #2D3B28;
       --accent:   #B85530;
       --muted:    #5C6B57;
       --border:   #D6CFC2;
     }
 
-    html { font-size: 16px; scroll-behavior: smooth; }
-    :target { scroll-margin-top: 40px; }
+    html { scroll-behavior: smooth; }
+    :target { scroll-margin-top: 110px; }
     ::selection { background: var(--accent); color: var(--bg); }
 
     body {
@@ -109,13 +111,19 @@
     a { color: inherit; text-decoration: none; }
 
     .wrap {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 3rem;
     }
 
     /* ── NAV ───────────────────────────────────────────── */
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(254, 254, 254, 0.92);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -123,8 +131,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 1.25rem;
-      padding-bottom: 1.25rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
 
     nav img {
@@ -133,48 +141,30 @@
       display: block;
     }
 
-    nav a.email {
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
       font-family: 'Jost', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.01em;
-    }
-
-    nav a.email:hover { color: var(--primary); }
-
-    /* ── HERO ──────────────────────────────────────────── */
-    .hero {
-      padding: 5rem 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 240px;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .hero-left h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
       font-weight: 500;
-      font-size: 42px;
-      line-height: 1.2;
-      color: var(--primary);
-      max-width: 480px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-left p {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.7;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
+      transition: color 0.3s ease;
     }
 
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-links .btn {
+      padding: 0.6rem 1.4rem;
+      color: var(--bg);
+    }
+
+    /* ── BUTTONS & LINKS ───────────────────────────────── */
     .btn {
       display: inline-block;
       background: var(--primary);
@@ -187,16 +177,74 @@
       padding: 0.85rem 2rem;
       border: none;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .btn:hover { background: #1e2a1a; }
+    .btn:hover {
+      background: #1e2a1a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(45, 59, 40, 0.18);
+    }
+
+    .text-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .text-link:hover { color: var(--primary); }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      padding: 7rem 0 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .hero-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(44px, 5vw, 60px);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: var(--primary);
+      max-width: 620px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-left p {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 30em;
+      margin-bottom: 2.75rem;
+    }
 
     /* ── HERO RIGHT — PHOTO + CARD ─────────────────────── */
     .hero-right {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 240px;
+      width: 300px;
     }
 
     .hero-photo {
@@ -211,12 +259,13 @@
       width: 100%;
       border: 1px solid var(--border);
       border-top: none;
-      padding: 1rem 1rem 0.75rem;
+      padding: 1.25rem 1.25rem 1rem;
+      background: var(--bg);
     }
 
     .profile-card .card-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
       color: var(--primary);
       margin-bottom: 0;
@@ -232,16 +281,16 @@
 
     .profile-card .card-title-left {
       font-family: 'Jost', sans-serif;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
     }
 
     .profile-card .card-title-right {
       font-family: 'Jost', sans-serif;
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: var(--muted);
@@ -263,7 +312,7 @@
       font-size: 12px;
       font-weight: 300;
       color: var(--muted);
-      padding: 0.45rem 0;
+      padding: 0.55rem 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -273,52 +322,41 @@
 
     /* ── CLIENTS ───────────────────────────────────────── */
     .clients-section {
-      padding: 3rem 0 0;
+      padding: 4rem 0 1rem;
     }
 
     .clients-grid {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       align-items: center;
-      justify-content: center;
-      gap: 4rem;
+      justify-items: center;
+      gap: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
     }
 
     .client-logo {
-      width: 160px;
-      height: 80px;
+      height: 44px;
+      max-width: 150px;
+      width: auto;
       object-fit: contain;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      opacity: 0.6;
+      filter: grayscale(1);
+      transition: opacity 0.3s ease, filter 0.3s ease;
     }
 
     .client-logo:hover {
       opacity: 1;
+      filter: grayscale(0);
     }
 
     /* ── SECTION SHARED ────────────────────────────────── */
     section {
-      padding: 4rem 0;
-      border-top: none;
-      position: relative;
+      padding: 7rem 0;
     }
 
-    /* ── ANIMATED SECTION DIVIDERS ─────────────────────── */
-    section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      transform-origin: left;
-      width: 100%;
-      max-width: 900px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), var(--border), transparent);
-      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    section.line-visible::before {
-      transform: translateX(-50%) scaleX(1);
+    section.tinted {
+      background: var(--tint);
     }
 
     .section-label {
@@ -327,128 +365,449 @@
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2.5rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
     }
 
-    /* ── WHAT WE DO ────────────────────────────────────── */
-    .what-grid {
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      margin-right: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .section-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 38px;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: var(--primary);
+      max-width: 17em;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 34em;
+    }
+
+    /* ── THE PROBLEM ───────────────────────────────────── */
+    .problem-section .section-headline {
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── WHAT WE DO — EDITORIAL SPLIT ──────────────────── */
+    .what-split {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
+      grid-template-columns: 5fr 7fr;
+      gap: 5rem;
+      align-items: start;
     }
 
-    .what-item {
+    .what-split .section-headline {
+      margin-bottom: 0;
+    }
+
+    .what-list > div {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .what-list > div:first-child {
+      padding-top: 0.5rem;
+    }
+
+    .what-list > div:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .what-rule {
       border-top: 2px solid var(--accent);
       width: 32px;
-      padding-top: 1rem;
+      margin-bottom: 1rem;
+      transition: width 0.35s ease;
     }
 
-    .what-item h3 {
+    .what-list > div:hover .what-rule {
+      width: 48px;
+    }
+
+    .what-list h3 {
       font-family: 'Jost', sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
       color: var(--primary);
       margin-bottom: 0.6rem;
     }
 
-    .what-item p {
+    .what-list p {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 36em;
+    }
+
+    /* ── SYSTEM FLOW ──────────────────────────────────── */
+    .system-intro {
+      margin-bottom: 4rem;
+    }
+
+    .system-intro .section-headline {
+      margin-bottom: 1.5rem;
+    }
+
+    .system-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .flow-step {
+      padding: 0 2rem;
+    }
+
+    .flow-step:first-child {
+      padding-left: 0;
+    }
+
+    .flow-step + .flow-step {
+      border-left: 1px solid var(--border);
+    }
+
+    .flow-num {
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .flow-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .flow-desc {
       font-family: 'Jost', sans-serif;
       font-size: 14px;
       font-weight: 300;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
-    .what-item-inner {
-      padding-top: 0;
+    /* ── GUARDRAILS — DEFINITION ROWS ──────────────────── */
+    .safety-rows {
+      max-width: 760px;
     }
 
-    /* ── WHO WE WORK WITH ──────────────────────────────── */
-    .who-grid {
+    .safety-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .who-item {
+    .safety-row:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .safety-row h3 {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .safety-row p {
       font-family: 'Jost', sans-serif;
       font-size: 15px;
       font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── WHO WE WORK WITH — SERIF LIST ─────────────────── */
+    .who-list > div {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 500;
       color: var(--primary);
-      padding: 1rem 0;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .who-list > div:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .who-list > div:hover {
+      color: var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    /* ── CASE STUDY ────────────────────────────────────── */
+    .case-study {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 3.5rem;
+    }
+
+    .case-study-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .case-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 1.3;
+      color: var(--primary);
+      max-width: 20em;
+      margin-bottom: 2.5rem;
+    }
+
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .case-study-col h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .case-study-col p {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .case-intro {
+      margin-bottom: 2.5rem;
+    }
+
+    .case-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-stat-metric {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .case-stat-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── WHAT MAKES US DIFFERENT ───────────────────────── */
+    .diff-table {
+      max-width: 900px;
+    }
+
+    .diff-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--border);
     }
+
+    .diff-head {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 1rem;
+    }
+
+    .diff-soft,
+    .diff-us {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .diff-soft { color: var(--muted); }
+    .diff-us { color: var(--primary); }
+
+    .diff-soft::before,
+    .diff-us::before {
+      display: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .diff-soft::before { content: 'Software'; }
+    .diff-us::before { content: 'Arbutus Labs'; color: var(--accent); }
 
     /* ── HOW IT WORKS ──────────────────────────────────── */
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-    }
-
-    .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 52px;
-      font-weight: 400;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.75rem;
+      gap: 3rem;
     }
 
     .step h3 {
       font-family: 'Jost', sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       color: var(--primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .step h3 .step-num {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-right: 0.6rem;
     }
 
     .step p {
       font-family: 'Jost', sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
     }
+
+    /* ── CONTACT ───────────────────────────────────────── */
+    .contact-section {
+      padding: 8rem 0;
+    }
+
+    .contact-section .section-headline {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--primary);
+      margin: 2.5rem 0 1.25rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .contact-email:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .contact-meta {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .contact-meta a:hover { color: var(--primary); }
 
     /* ── FOOTER ────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.75rem 0;
+      background: var(--tint);
+      padding: 3.5rem 0;
     }
 
     footer .wrap {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 1.25rem;
     }
 
     footer .wordmark {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 500;
       letter-spacing: 0.1em;
       color: var(--primary);
     }
 
-    footer .info {
+    .footer-tagline {
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      max-width: 320px;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-align: right;
       font-family: 'Jost', sans-serif;
       font-size: 12px;
       font-weight: 300;
       color: var(--muted);
     }
 
-    footer .info a:hover { color: var(--primary); }
+    .footer-contact a:hover { color: var(--primary); }
 
     /* ── SCROLL REVEAL ────────────────────────────────── */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.33, 1, 0.68, 1),
-                  transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+      transform: translateY(14px);
+      transition: opacity 0.9s cubic-bezier(0.33, 1, 0.68, 1),
+                  transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
     }
     .reveal.visible {
       opacity: 1;
@@ -458,150 +817,114 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
 
-    /* ── HOVER MICRO-INTERACTIONS ─────────────────────── */
-    .what-grid > div {
-      transition: transform 0.35s ease;
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
-    .what-grid > div:hover {
-      transform: translateY(-3px);
-    }
-    .what-grid > div:hover .what-item {
-      width: 48px;
-      transition: width 0.35s ease;
-    }
-    .what-item {
-      transition: width 0.35s ease;
-    }
-
-    .who-item {
-      transition: color 0.3s ease, padding-left 0.3s ease;
-    }
-    .who-item:hover {
-      color: var(--accent);
-      padding-left: 0.5rem;
-    }
-
-    .step {
-      transition: transform 0.35s ease;
-    }
-    .step:hover {
-      transform: translateY(-3px);
-    }
-    .step:hover .step-num {
-      color: var(--primary);
-    }
-    .step-num {
-      transition: color 0.35s ease;
-    }
-
-    /* ── CONTACT ───────────────────────────────────────── */
-    .contact-section {
-      padding: 5rem 0;
-      position: relative;
-    }
-
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      transform-origin: left;
-      width: 100%;
-      max-width: 900px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), var(--border), transparent);
-      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .contact-section.line-visible::before {
-      transform: translateX(-50%) scaleX(1);
-    }
-
-    .contact-intro {
-      max-width: 540px;
-    }
-
-    .contact-intro h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 36px;
-      line-height: 1.2;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .contact-intro p {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-top: 0.5rem;
-    }
-
-    .contact-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .contact-detail svg {
-      width: 20px;
-      height: 20px;
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .contact-detail strong {
-      display: block;
-      font-family: 'Jost', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--primary);
-    }
-
-    .contact-detail span {
-      font-family: 'Jost', sans-serif;
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--muted);
-    }
-
-    .contact-detail a {
-      color: inherit;
-      text-decoration: none;
-    }
-    .contact-detail a:hover { color: var(--accent); }
 
     /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      section { padding: 5rem 0; }
+
+      .hero { padding: 5rem 0 4rem; }
+
+      .what-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .system-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step {
+        padding: 1.5rem 0;
+      }
+
+      .flow-step:first-child { padding-top: 0; }
+
+      .flow-step + .flow-step {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .case-study-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .steps { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .case-stats {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
     @media (max-width: 640px) {
+      .wrap { padding: 0 1.5rem; }
+
+      section { padding: 4.5rem 0; }
+
+      .nav-links a:not(.btn) { display: none; }
+
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3rem;
       }
 
       .hero-right {
         width: 100%;
-        max-width: 260px;
+        max-width: 280px;
         margin: 0 auto;
       }
 
-      .hero-left h1 { font-size: 30px; }
+      .hero-left .btn {
+        display: block;
+        text-align: center;
+      }
 
-      .what-grid,
-      .steps { grid-template-columns: 1fr; gap: 2rem; }
+      .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
 
-      .who-grid { grid-template-columns: 1fr; }
+      .text-link {
+        display: inline-block;
+        margin: 1.25rem 0 0;
+      }
 
+      .section-headline { font-size: 30px; }
+
+      .case-study { padding: 2rem; }
+
+      .case-quote { font-size: 24px; }
+
+      .safety-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .who-list > div { font-size: 21px; }
+
+      .diff-head { display: none; }
+
+      .diff-row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .diff-soft::before,
+      .diff-us::before {
+        display: block;
+      }
+
+      .contact-email { font-size: 22px; }
+
+      .footer-contact { text-align: left; }
     }
   </style>
 </head>
@@ -613,8 +936,12 @@
   <!-- NAV -->
   <nav>
     <div class="wrap">
-      <img src="assets/logo.png" alt="Arbutus Labs — AI automation for trades, real estate, and law in Vancouver, BC" />
-      <a href="mailto:tyson@arbutuslabs.ca" class="email">tyson@arbutuslabs.ca</a>
+      <a href="#top" aria-label="Back to top"><img src="assets/logo.png" alt="Arbutus Labs — AI automation for trades, real estate, and law in Vancouver, BC" /></a>
+      <div class="nav-links">
+        <a href="#system">Approach</a>
+        <a href="#case">In Practice</a>
+        <a href="#contact" class="btn">Start a conversation</a>
+      </div>
     </div>
   </nav>
 
@@ -625,14 +952,16 @@
 
         <!-- Left: headline, subline, CTA -->
         <div class="hero-left">
-          <h1 class="reveal">Your time is worth too much to spend on admin</h1>
-          <p class="reveal reveal-d1">Arbutus Labs builds and maintains AI systems for businesses in trades, real estate, and law — so the admin runs itself and you stay focused on clients.</p>
-          <a href="#contact" class="btn reveal reveal-d2">Start with a free conversation</a>
+          <h1 class="reveal">AI systems that run your back office — <em>inside the tools you already use.</em></h1>
+          <p class="reveal reveal-d1">Arbutus Labs builds custom automation for businesses that don't have time to become tech companies. Your systems read the paperwork, keep the numbers current, and bring you the decision — delivered working, then maintained month over month.</p>
+          <div class="reveal reveal-d2">
+            <a href="#contact" class="btn">Start a conversation</a>
+            <a href="#system" class="text-link">See how it works</a>
+          </div>
         </div>
 
         <!-- Right: portrait photo + profile card -->
         <div class="hero-right reveal reveal-d2">
-          <!-- Place your portrait photo at assets/photo.jpg -->
           <img src="assets/photo.jpg" alt="Tyson Chernen, founder of Arbutus Labs — AI automation consultant in Vancouver" class="hero-photo" />
           <div class="profile-card">
             <div class="card-name">Tyson Chernen</div>
@@ -654,48 +983,111 @@
       </div>
 
       <div class="clients-section">
-        <p class="section-label reveal">Built For</p>
+        <p class="section-label reveal">Working With</p>
         <div class="clients-grid reveal reveal-d1">
-          <img src="assets/logo-urbanek.png" alt="Urbanek Law — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
+          <img src="assets/logo-urbanek.png" alt="Urbanek Law — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" style="height:58px" />
           <img src="assets/logo-vatra.png" alt="Vatra Homes — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
           <img src="assets/logo-silverguides.png" alt="Silver Guides — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
-          <img src="assets/logo-blossom.avif" alt="Blossom — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" style="width:130px;height:65px;filter:grayscale(1)" />
+          <img src="assets/logo-blossom.avif" alt="Blossom — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
         </div>
       </div>
 
     </div>
   </div>
 
+  <!-- THE PROBLEM -->
+  <section class="problem-section">
+    <div class="wrap">
+      <p class="section-label reveal">The Problem</p>
+      <h2 class="section-headline reveal">The admin that used to take an hour now takes half the day.</h2>
+      <p class="section-body reveal reveal-d1">Invoices pile up, budgets drift out of date, follow-ups slip — and the work that actually makes money keeps getting pushed back. The fix isn't another app to check. It's a system that does the checking.</p>
+    </div>
+  </section>
+
   <!-- WHAT WE DO -->
   <section>
     <div class="wrap">
-      <p class="section-label reveal">What We Do</p>
-      <div class="what-grid">
+      <div class="what-split">
+        <div>
+          <p class="section-label reveal">What We Do</p>
+          <h2 class="section-headline reveal">What our systems handle, and what stays with you.</h2>
+        </div>
+        <div class="what-list">
 
-        <div class="reveal">
-          <div class="what-item"></div>
-          <div class="what-item-inner">
+          <div class="reveal">
+            <div class="what-rule"></div>
             <h3>Handle the repetitive work</h3>
-            <p>Scheduling, follow-ups, reminders, and paperwork — handled automatically so nothing falls through the cracks.</p>
+            <p>Invoice processing, follow-ups, document filing, record-keeping, reporting. The list is different for every business, so every system is built around yours. Nothing slips through unnoticed.</p>
           </div>
-        </div>
 
-        <div class="reveal reveal-d1">
-          <div class="what-item"></div>
-          <div class="what-item-inner">
-            <h3>AI that knows your business</h3>
-            <p>Built around how you actually work — your processes, your language, your clients. Not a generic tool.</p>
+          <div class="reveal reveal-d1">
+            <div class="what-rule"></div>
+            <h3>You keep the judgment</h3>
+            <p>Our systems don't replace your decisions. They bring you the decision and handle everything around it: reading the paperwork, filling in the details, remembering your vendors and preferences.</p>
           </div>
-        </div>
 
-        <div class="reveal reveal-d2">
-          <div class="what-item"></div>
-          <div class="what-item-inner">
-            <h3>Always improving</h3>
-            <p>AI moves fast. We monitor your systems, swap in better models as they improve, and update everything as your business changes. You stay current without lifting a finger.</p>
+          <div class="reveal reveal-d2">
+            <div class="what-rule"></div>
+            <h3>Delivered working, then grown</h3>
+            <p>Every build connects to the accounts you already have and is delivered working. From there it's maintained, tuned, and grown month over month as new needs surface, getting faster the longer it runs.</p>
           </div>
-        </div>
 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW THE SYSTEM WORKS -->
+  <section class="tinted" id="system">
+    <div class="wrap">
+      <div class="system-intro">
+        <p class="section-label reveal">Under The Hood</p>
+        <h2 class="section-headline reveal">A system that learns your business — and gets better the longer it runs.</h2>
+        <p class="section-body reveal reveal-d1">Every build starts with how your business actually operates — your inbox, your spreadsheets, your team chat. The system reads a knowledge base we write about your business, acts on what it's confident about, and brings you the decision when it's not. Every correction you give teaches it. Over time, it handles more and asks less.</p>
+      </div>
+      <div class="system-flow reveal reveal-d1">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-label">Event comes in</div>
+          <div class="flow-desc">New email, message, or scheduled trigger</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-label">Agent reads your knowledge base</div>
+          <div class="flow-desc">Routing rules, contacts, projects, processes</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-label">Acts or asks</div>
+          <div class="flow-desc">Confident? Handles it. Unsure? Asks you first</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-label">System learns</div>
+          <div class="flow-desc">Your corrections update the knowledge base</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section>
+    <div class="wrap">
+      <p class="section-label reveal">Built With Guardrails</p>
+      <h2 class="section-headline reveal">Every action is approved, logged, or flagged — nothing happens silently.</h2>
+      <div class="safety-rows">
+        <div class="safety-row reveal">
+          <h3>Starts in approval mode</h3>
+          <p>Every system begins with human sign-off on every action — it only acts independently once you trust it.</p>
+        </div>
+        <div class="safety-row reveal reveal-d1">
+          <h3>Confidence routing</h3>
+          <p>High confidence: acts silently. Medium: acts and flags for review. Low: asks before doing anything.</p>
+        </div>
+        <div class="safety-row reveal reveal-d2">
+          <h3>Full visibility</h3>
+          <p>Every action is logged. You can see exactly what was done, when, and why — and correct anything instantly.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -704,37 +1096,109 @@
   <section>
     <div class="wrap">
       <p class="section-label reveal">Who We Work With</p>
-      <div class="who-grid">
-        <div class="who-item reveal">Trades companies — contractors, plumbers, electricians</div>
-        <div class="who-item reveal reveal-d1">Real estate agents &amp; brokerages</div>
-        <div class="who-item reveal reveal-d2">Law firms &amp; professional services</div>
-        <div class="who-item reveal reveal-d3">Any business where admin is eating your day</div>
+      <div class="who-list">
+        <div class="reveal">Builders, developers &amp; trades companies</div>
+        <div class="reveal reveal-d1">Real estate agents &amp; brokerages</div>
+        <div class="reveal reveal-d2">Law firms &amp; professional services</div>
+        <div class="reveal reveal-d3">Any business where admin is eating the day</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="tinted" id="case">
+    <div class="wrap">
+      <p class="section-label reveal">In Practice</p>
+      <p class="section-body case-intro reveal">One recent build, told in full. The integrations and the purpose change with every business; the approach stays the same.</p>
+      <div class="case-study reveal">
+        <div class="case-study-label">Residential Development Company — Vancouver, BC</div>
+        <p class="case-quote">From inbox to the right budget line — in a single tap.</p>
+        <div class="case-study-grid">
+          <div class="case-study-col">
+            <h4>The problem</h4>
+            <p>Invoices arrived by email across multiple active projects. Each one meant reading the paperwork, pulling out the details, entering them into the right budget by hand — and hoping overruns got noticed before they became expensive.</p>
+          </div>
+          <div class="case-study-col">
+            <h4>What we built</h4>
+            <p>A complete invoice and budget-tracking system. Invoices arrive by email, appear in the owner's chat within seconds with the details already extracted, and land in the right project budget with a single tap.</p>
+          </div>
+          <div class="case-study-col">
+            <h4>The result</h4>
+            <p>Budgets stay current in real time, with automatic warnings the moment any budget line runs hot. The owner makes the call — the system does the paperwork around it.</p>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat">
+            <div class="case-stat-metric">Seconds</div>
+            <div class="case-stat-label">from an invoice hitting the inbox to the details in chat</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-metric">One tap</div>
+            <div class="case-stat-label">to land it in the right project budget, vendor and details filled in</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-metric">Early warnings</div>
+            <div class="case-stat-label">the moment any budget line runs hot, before it becomes an overrun</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT MAKES US DIFFERENT -->
+  <section>
+    <div class="wrap">
+      <p class="section-label reveal">What Makes Us Different</p>
+      <h2 class="section-headline reveal">The difference between buying software and having your own system.</h2>
+      <div class="diff-table reveal reveal-d1">
+        <div class="diff-row diff-head">
+          <div>Off-the-shelf software</div>
+          <div>An Arbutus Labs system</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-soft">Generic by design. You adapt your process to the tool.</div>
+          <div class="diff-us">Built around how your business already operates: your process, your vendors, your rules.</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-soft">Another app, another tab, another login to check.</div>
+          <div class="diff-us">Lives inside your inbox, spreadsheets, and team chat. Nothing new to learn.</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-soft">One tool per problem.</div>
+          <div class="diff-us">One system, many purposes. Invoices today; follow-ups, filing, and reporting as needs surface.</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-soft">Automates blindly or not at all.</div>
+          <div class="diff-us">Acts on what it's confident about, and brings you the decision when your judgment matters.</div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-soft">A subscription and a support ticket queue.</div>
+          <div class="diff-us">A person who built your system, maintains it, and grows it month over month.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section>
+  <section class="tinted">
     <div class="wrap">
       <p class="section-label reveal">How It Works</p>
+      <h2 class="section-headline reveal">Map, build, maintain.</h2>
       <div class="steps">
 
         <div class="step reveal">
-          <div class="step-num">1</div>
-          <h3>Free intro call</h3>
-          <p>We sit down, learn how your business runs, and find where time is being lost. No pitch — just a conversation.</p>
+          <h3><span class="step-num">01 —</span>We map your workflows</h3>
+          <p>A free working session where we learn how your business runs day-to-day and pinpoint exactly where time is being lost to admin.</p>
         </div>
 
         <div class="step reveal reveal-d1">
-          <div class="step-num">2</div>
-          <h3>We build</h3>
+          <h3><span class="step-num">02 —</span>We build</h3>
           <p>Custom systems designed around your workflow, set up and running within weeks. You see it before it goes live.</p>
         </div>
 
         <div class="step reveal reveal-d2">
-          <div class="step-num">3</div>
-          <h3>We stay on</h3>
-          <p>Monthly check-ins, system updates, and improvements as AI evolves and your business grows. We're your person for this — ongoing, not one-and-done.</p>
+          <h3><span class="step-num">03 —</span>We stay on</h3>
+          <p>Maintained, tuned, and grown month over month as new needs surface. Ongoing, not a handoff.</p>
         </div>
 
       </div>
@@ -742,47 +1206,34 @@
   </section>
 
   <!-- CONTACT -->
-  <div class="contact-section" id="contact">
+  <section class="contact-section" id="contact">
     <div class="wrap">
-        <div class="contact-intro">
-          <p class="section-label reveal">Get In Touch</p>
-          <h2 class="reveal">Ready to get your<br>time back?</h2>
-          <p class="reveal reveal-d1">No pitch, no pressure. Just a conversation about where AI could help your business run smoother.</p>
-          <div class="contact-details reveal reveal-d2">
-            <div class="contact-detail">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <div>
-                <strong><a href="mailto:tyson@arbutuslabs.ca">tyson@arbutuslabs.ca</a></strong>
-                <span>Email Anytime</span>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <div>
-                <strong><a href="tel:+12369791818">(236) 979-1818</a></strong>
-                <span>Call or Text</span>
-              </div>
-            </div>
-            <div class="contact-detail">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div>
-                <strong>Vancouver, BC</strong>
-                <span>Serving Western Canada</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-headline reveal">Start with a conversation.</h2>
+      <p class="section-body reveal reveal-d1">A short call about how your business runs and where a system could take work off your hands. If it's not a fit, we'll say so.</p>
+      <div class="reveal reveal-d2">
+        <a href="mailto:tyson@arbutuslabs.ca" class="contact-email">tyson@arbutuslabs.ca</a>
+        <p class="contact-meta">
+          <a href="tel:+12369791818">(236) 979-1818</a> &middot; call or text<br />
+          Vancouver, BC &middot; serving Western Canada
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="wrap">
-      <span class="wordmark">ARBUTUS LABS</span>
-      <span class="info">
+      <div>
+        <div class="wordmark">ARBUTUS LABS</div>
+        <p class="footer-tagline">Practical AI systems, built inside the tools you already use.</p>
+      </div>
+      <div class="footer-contact">
         <a href="mailto:tyson@arbutuslabs.ca">tyson@arbutuslabs.ca</a>
-        &nbsp;·&nbsp;Vancouver, BC
-      </span>
+        <a href="tel:+12369791818">(236) 979-1818</a>
+        <span>Vancouver, BC &middot; Serving Western Canada</span>
+        <span>&copy; 2026 Arbutus Labs</span>
+      </div>
     </div>
   </footer>
 
@@ -799,30 +1250,6 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // ── Animated Section Dividers ──
-    const lineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('line-visible');
-          lineObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05 });
-    document.querySelectorAll('section, .contact-section').forEach(el => lineObserver.observe(el));
-
-    // ── Smooth Scroll to Contact ──
-    document.querySelectorAll('a[href="#contact"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.getElementById('contact');
-        if (target) {
-          const top = target.getBoundingClientRect().top + window.scrollY - 40;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
-      });
-    });
-
   </script>
 </body>
 </html>
