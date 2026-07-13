@@ -164,6 +164,12 @@
       color: var(--bg);
     }
 
+    /* Sticky-bar button: same grey hover, no lift */
+    .nav-links .btn:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     /* ── BUTTONS & LINKS ───────────────────────────────── */
     .btn {
       display: inline-block;
@@ -810,6 +816,52 @@
 
     .footer-contact a:hover { color: var(--primary); }
 
+    /* ── PARTICLE NETWORK (site-wide, behind content) ── */
+    /* Mask keeps particles strong in the margins, faint under the text column */
+    #tsparticles canvas {
+      pointer-events: none !important;
+      -webkit-mask-image: linear-gradient(to right,
+        black 0%, black 10%,
+        rgba(0, 0, 0, 0.22) 26%,
+        rgba(0, 0, 0, 0.22) 74%,
+        black 90%, black 100%);
+      mask-image: linear-gradient(to right,
+        black 0%, black 10%,
+        rgba(0, 0, 0, 0.22) 26%,
+        rgba(0, 0, 0, 0.22) 74%,
+        black 90%, black 100%);
+    }
+
+    /* In-section particle layers: beige background → particles → text */
+    .tinted-particles {
+      position: relative;
+    }
+
+    .tinted-particles > .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .section-particles canvas {
+      pointer-events: none !important;
+      -webkit-mask-image: linear-gradient(to right,
+        black 0%, black 10%,
+        rgba(0, 0, 0, 0.35) 26%,
+        rgba(0, 0, 0, 0.35) 74%,
+        black 90%, black 100%);
+      mask-image: linear-gradient(to right,
+        black 0%, black 10%,
+        rgba(0, 0, 0, 0.35) 26%,
+        rgba(0, 0, 0, 0.35) 74%,
+        black 90%, black 100%);
+    }
+
     /* ── SCROLL REVEAL ────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -1052,6 +1104,8 @@
 
   <div class="site-bg"></div>
 
+  <div id="tsparticles" aria-hidden="true"></div>
+
   <div id="page">
   <!-- NAV -->
   <nav>
@@ -1158,7 +1212,8 @@
   </section>
 
   <!-- HOW THE SYSTEM WORKS -->
-  <section class="tinted" id="system">
+  <section class="tinted tinted-particles" id="system">
+    <div class="section-particles" id="tsp-system" aria-hidden="true"></div>
     <div class="wrap">
       <div class="system-intro">
         <p class="section-label reveal">Under The Hood</p>
@@ -1230,7 +1285,8 @@
   </section>
 
   <!-- CASE STUDY -->
-  <section class="tinted" id="case">
+  <section class="tinted tinted-particles" id="case">
+    <div class="section-particles" id="tsp-case" aria-hidden="true"></div>
     <div class="wrap">
       <p class="section-label reveal">In Practice</p>
       <p class="section-body case-intro reveal">One recent build, told in full. The integrations and the purpose change with every business; the approach stays the same.</p>
@@ -1308,7 +1364,8 @@
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="tinted">
+  <section class="tinted tinted-particles" id="process">
+    <div class="section-particles" id="tsp-process" aria-hidden="true"></div>
     <div class="wrap">
       <p class="section-label reveal">How It Works</p>
       <h2 class="section-headline reveal">Map, build, maintain.</h2>
@@ -1368,7 +1425,160 @@
 
   </div><!-- end #page -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3/tsparticles.slim.bundle.min.js" defer></script>
   <script>
+    // ── Particle network in Under The Hood (desktop, motion-ok only) ──
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(max-width: 640px)').matches) return;
+      if (!window.tsParticles || !window.loadSlim) return;
+
+      await loadSlim(tsParticles);
+
+      const baseOptions = (theme) => ({
+        fpsLimit: 60,
+        detectRetina: true,
+        background: { color: 'transparent' },
+        particles: {
+          number: { value: theme.count, density: { enable: true } },
+          color: { value: theme.colors },
+          opacity: { value: { min: 0.15, max: theme.maxOpacity } },
+          size: { value: { min: 1, max: 2.5 } },
+          links: {
+            enable: true,
+            distance: theme.linkDistance,
+            color: theme.linkColor,
+            opacity: theme.linkOpacity,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: theme.speed,
+            direction: 'none',
+            outModes: { default: 'out' }
+          }
+        },
+        interactivity: {
+          detectsOn: 'window',
+          events: {
+            onHover: {
+              enable: true,
+              mode: 'grab',
+              parallax: { enable: false }
+            },
+            resize: { enable: true }
+          },
+          modes: {
+            grab: { distance: 110, links: { opacity: theme.grabOpacity } }
+          }
+        }
+      });
+
+      const containers = [];
+
+      // Global sage field behind the whole page
+      const globalField = await tsParticles.load({
+        id: 'tsparticles',
+        options: Object.assign(
+          { fullScreen: { enable: true, zIndex: -1 } },
+          baseOptions({
+            count: 70,
+            colors: ['#5C6B57', '#5C6B57', '#5C6B57', '#B85530'],
+            maxOpacity: 0.4,
+            linkDistance: 140,
+            linkColor: '#8A9584',
+            linkOpacity: 0.22,
+            grabOpacity: 0.32,
+            speed: 0.5
+          })
+        )
+      });
+      if (globalField) {
+        globalField._linkBase = 0.22;
+        containers.push(globalField);
+      }
+
+      // Denser, warmer fields on the technical sections' beige bands
+      for (const id of ['tsp-system', 'tsp-case', 'tsp-process']) {
+        if (!document.getElementById(id)) continue;
+        const sectionField = await tsParticles.load({
+          id,
+          options: Object.assign(
+            { fullScreen: { enable: false } },
+            baseOptions({
+              count: 90,
+              colors: ['#B85530', '#5C6B57', '#8A9584'],
+              maxOpacity: 0.5,
+              linkDistance: 150,
+              linkColor: '#B85530',
+              linkOpacity: 0.3,
+              grabOpacity: 0.4,
+              speed: 0.4
+            })
+          )
+        });
+        if (sectionField) {
+          sectionField._linkBase = 0.3;
+          containers.push(sectionField);
+        }
+      }
+
+      if (!containers.length) return;
+
+      const getParticles = () => containers.flatMap(c => c.particles.filter(() => true));
+
+      // ── Scroll impulse: field drifts gently with scroll, then relaxes ──
+      let lastY = window.scrollY;
+      let impulse = 0;
+      window.addEventListener('scroll', () => {
+        const dy = window.scrollY - lastY;
+        lastY = window.scrollY;
+        impulse = Math.max(-2.6, Math.min(2.6, impulse - dy * 0.009));
+      }, { passive: true });
+
+      (function driftTick() {
+        if (Math.abs(impulse) > 0.002) {
+          for (const p of getParticles()) {
+            p.position.y += impulse;
+          }
+          impulse *= 0.92;
+        }
+        requestAnimationFrame(driftTick);
+      })();
+
+      // ── Section bloom: links briefly brighten when a section lands ──
+      let bloomActive = false;
+
+      function bloomNetwork() {
+        if (bloomActive) return;
+        bloomActive = true;
+        const start = performance.now();
+        const duration = 1100;
+        (function bloomTick(now) {
+          const t = Math.min(1, (now - start) / duration);
+          const lift = 0.28 * Math.sin(Math.PI * t);
+          for (const c of containers) {
+            const value = c._linkBase + lift;
+            for (const p of c.particles.filter(() => true)) {
+              if (p.options.links) p.options.links.opacity = value;
+            }
+          }
+          if (t < 1) {
+            requestAnimationFrame(bloomTick);
+          } else {
+            bloomActive = false;
+          }
+        })(performance.now());
+      }
+
+      const bloomObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) bloomNetwork();
+        });
+      }, { rootMargin: '0px 0px -55% 0px', threshold: 0 });
+      document.querySelectorAll('section').forEach(el => bloomObserver.observe(el));
+    });
+
     // ── Scroll Reveal ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
