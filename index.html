@@ -483,6 +483,146 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Technical stack line under the flow */
+    .system-stack {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 42em;
+      margin-top: 3rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── WHAT IT CAN DO ───────────────────────────────── */
+    .cap-menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3.5rem;
+      margin-top: 3rem;
+    }
+
+    .cap-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--primary);
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cap-item::before {
+      content: '';
+      flex: none;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .cap-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-top: 2.5rem;
+    }
+
+    .flows {
+      margin-top: 4.5rem;
+      padding-top: 3.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .flows-label {
+      margin-bottom: 0.75rem;
+    }
+
+    .flows-lead {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .flow-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .flow-card {
+      border-top: 2px solid var(--accent);
+      padding-top: 1.25rem;
+    }
+
+    .flow-card-trigger {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .flow-card p {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── SUBSECTIONS & EXAMPLE LIST ────────────────────── */
+    .subsection {
+      margin-top: 4.5rem;
+      padding-top: 3.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .subsection > .section-label {
+      margin-bottom: 2rem;
+    }
+
+    .example-list {
+      display: grid;
+    }
+
+    .example-item {
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .example-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .example-item strong {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .clients-caption {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
     .system-flow {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -922,6 +1062,11 @@
         gap: 3rem;
       }
 
+      .flow-cards {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
       .system-flow {
         grid-template-columns: 1fr;
       }
@@ -1046,6 +1191,11 @@
         gap: 0.5rem;
       }
 
+      .cap-menu {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
       .who-list > div { font-size: 21px; }
 
       .diff-head { display: none; }
@@ -1128,8 +1278,8 @@
 
         <!-- Left: headline, subline, CTA -->
         <div class="hero-left">
-          <h1 class="reveal">Custom AI systems, built <em>inside the tools you already use.</em></h1>
-          <p class="reveal reveal-d1">Arbutus Labs builds custom automation for businesses that don't have time to become tech companies. Your systems read the paperwork, keep the numbers current, and bring you the decision. Delivered working, then maintained month over month.</p>
+          <h1 class="reveal">Custom AI agents and automations, built <em>into the tools you already use.</em></h1>
+          <p class="reveal reveal-d1">Arbutus Labs designs, builds, and maintains AI systems that work across your email, files, and applications. They handle the repetitive work and bring you the decision when your judgment matters.</p>
           <div class="reveal reveal-d2">
             <a href="#contact" class="btn">Start a conversation</a>
             <a href="#system" class="text-link">See how it works</a>
@@ -1147,11 +1297,11 @@
             </div>
             <hr class="card-divider" />
             <ul>
-              <li>AI Systems &amp; Automation</li>
-              <li>Business Process Design</li>
-              <li>Custom Integrations</li>
-              <li>Knowledge Systems</li>
-              <li>Ongoing Optimization</li>
+              <li>Custom AI Agents &amp; RAG</li>
+              <li>Prompt Engineering &amp; Automation</li>
+              <li>API &amp; Workflow Integration</li>
+              <li>Python, TypeScript, SQL</li>
+              <li>Claude, OpenAI &amp; Cloud APIs</li>
             </ul>
           </div>
         </div>
@@ -1166,61 +1316,40 @@
           <img src="assets/logo-silverguides.png" alt="Silver Guides — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
           <img src="assets/logo-blossom.avif" alt="Blossom — AI automation client of Arbutus Labs" class="client-logo" loading="lazy" />
         </div>
+        <p class="clients-caption reveal reveal-d1">Builders and developers, real estate, law, and professional services.</p>
       </div>
 
     </div>
   </div>
 
-  <!-- THE PROBLEM -->
-  <section class="problem-section">
-    <div class="wrap">
-      <p class="section-label reveal">The Problem</p>
-      <h2 class="section-headline reveal">The paperwork grows faster than the business.</h2>
-      <p class="section-body reveal reveal-d1">Invoices pile up, budgets drift out of date, follow-ups slip, and the work that actually makes money keeps getting pushed back. We build systems that take that work on and keep it done.</p>
-    </div>
-  </section>
-
-  <!-- WHAT WE DO -->
+  <!-- WHAT WE BUILD -->
   <section>
     <div class="wrap">
-      <div class="what-split">
-        <div>
-          <p class="section-label reveal">What We Do</p>
-          <h2 class="section-headline reveal">What our systems handle, and what stays with you.</h2>
-        </div>
-        <div class="what-list">
+      <p class="section-label reveal">What We Build</p>
+      <h2 class="section-headline reveal">From a single workflow to your whole operation.</h2>
+      <p class="section-body reveal reveal-d1">Arbutus Labs designs, builds, and maintains custom AI agents and automations that run on your own emails, files, and tools. Whatever the work, the system draws on your real information and brings you the decision when your judgment matters.</p>
 
-          <div class="reveal">
-            <div class="what-rule"></div>
-            <h3>Handle the repetitive work</h3>
-            <p>Invoice processing, follow-ups, document filing, record-keeping, reporting. The list is different for every business, so every system is built around yours. Nothing slips through unnoticed.</p>
-          </div>
-
-          <div class="reveal reveal-d1">
-            <div class="what-rule"></div>
-            <h3>You keep the judgment</h3>
-            <p>Our systems don't replace your decisions. They bring you the decision and handle everything around it: reading the paperwork, filling in the details, remembering your vendors and preferences.</p>
-          </div>
-
-          <div class="reveal reveal-d2">
-            <div class="what-rule"></div>
-            <h3>Delivered working, then grown</h3>
-            <p>Every build connects to the accounts you already have and is delivered working. From there it's maintained, tuned, and grown month over month as new needs surface, getting faster the longer it runs.</p>
-          </div>
-
-        </div>
+      <div class="cap-menu reveal reveal-d1">
+        <div class="cap-item">File incoming emails and messages where they belong</div>
+        <div class="cap-item">Answer questions about your business and build reports on demand</div>
+        <div class="cap-item">Draft replies, confirmations, and marketing copy</div>
+        <div class="cap-item">Schedule meetings, bookings, and reminders</div>
+        <div class="cap-item">Track every deadline, renewal, and follow-up so nothing slips</div>
+        <div class="cap-item">Connect your CRM, inbox, and apps into one clear view</div>
       </div>
+
+      <p class="cap-note reveal reveal-d2">Nothing gets sent or changed until you approve it.</p>
     </div>
   </section>
 
-  <!-- HOW THE SYSTEM WORKS -->
+  <!-- HOW WE WORK -->
   <section class="tinted tinted-particles" id="system">
     <div class="section-particles" id="tsp-system" aria-hidden="true"></div>
     <div class="wrap">
       <div class="system-intro">
-        <p class="section-label reveal">Under The Hood</p>
-        <h2 class="section-headline reveal">A system that learns your business and gets better the longer it runs.</h2>
-        <p class="section-body reveal reveal-d1">Every build starts with how your business actually operates: your inbox, your spreadsheets, your team chat. The system reads a knowledge base we write about your business, acts on what it's confident about, and brings you the decision when it's not. Every correction you give teaches it. Over time, it handles more and asks less.</p>
+        <p class="section-label reveal">How We Work</p>
+        <h2 class="section-headline reveal">Systems built around how your business actually runs.</h2>
+        <p class="section-body reveal reveal-d1">Every build starts with your real operation: your inbox, your files, your tools. We write a knowledge base about your business, and the system acts on what it's confident about, brings you the decision when it's not, and learns from every correction. Here is how a typical system runs.</p>
       </div>
       <div class="system-flow reveal reveal-d1">
         <div class="flow-step">
@@ -1244,61 +1373,44 @@
           <div class="flow-desc">Your corrections update the knowledge base</div>
         </div>
       </div>
-    </div>
-  </section>
+      <p class="system-stack reveal reveal-d1">Built on Claude and OpenAI, with custom API and webhook integrations across email, calendar, CRM, and cloud storage. Prompt engineering and confidence-based routing decide what to handle and what to bring you.</p>
 
-  <!-- SAFETY -->
-  <section>
-    <div class="wrap">
-      <p class="section-label reveal">Built With Guardrails</p>
-      <h2 class="section-headline reveal">Every action is approved, logged, or flagged. Nothing happens silently.</h2>
-      <div class="safety-rows">
-        <div class="safety-row reveal">
-          <h3>Starts in approval mode</h3>
-          <p>Every system begins with human sign-off on every action — it only acts independently once you trust it.</p>
-        </div>
-        <div class="safety-row reveal reveal-d1">
-          <h3>Confidence routing</h3>
-          <p>High confidence: acts silently. Medium: acts and flags for review. Low: asks before doing anything.</p>
-        </div>
-        <div class="safety-row reveal reveal-d2">
-          <h3>Full visibility</h3>
-          <p>Every action is logged. You can see exactly what was done, when, and why, and correct anything instantly.</p>
-        </div>
-        <div class="safety-row reveal reveal-d3">
-          <h3>Your data stays yours</h3>
-          <p>Systems connect through scoped, revocable permissions to accounts you already control, running on established enterprise infrastructure. Your data stays in your systems and is never used to train AI models.</p>
+      <div class="subsection reveal reveal-d1">
+        <p class="section-label">Oversight &amp; Safety</p>
+        <div class="safety-rows">
+          <div class="safety-row">
+            <h3>Starts in approval mode</h3>
+            <p>Every system begins with human sign-off on every action. It only acts independently once you trust it.</p>
+          </div>
+          <div class="safety-row">
+            <h3>Confidence routing</h3>
+            <p>High confidence: acts silently. Medium: acts and flags for review. Low: asks before doing anything.</p>
+          </div>
+          <div class="safety-row">
+            <h3>Full visibility</h3>
+            <p>Every action is logged. You can see exactly what was done, when, and why, and correct anything instantly.</p>
+          </div>
+          <div class="safety-row">
+            <h3>Your data stays yours</h3>
+            <p>Systems connect through scoped, revocable permissions to accounts you already control, on established enterprise infrastructure. Your data stays in your systems and is never used to train AI models.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHO WE WORK WITH -->
-  <section>
-    <div class="wrap">
-      <p class="section-label reveal">Who We Work With</p>
-      <div class="who-list">
-        <div class="reveal">Builders, developers &amp; trades companies</div>
-        <div class="reveal reveal-d1">Real estate agents &amp; brokerages</div>
-        <div class="reveal reveal-d2">Law firms &amp; professional services</div>
-        <div class="reveal reveal-d3">Any business where admin is eating the day</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASE STUDY -->
-  <section class="tinted tinted-particles" id="case">
-    <div class="section-particles" id="tsp-case" aria-hidden="true"></div>
+  <!-- IN PRACTICE -->
+  <section id="case">
     <div class="wrap">
       <p class="section-label reveal">In Practice</p>
-      <p class="section-body case-intro reveal">One recent build, told in full. The integrations and the purpose change with every business; the approach stays the same.</p>
+      <p class="section-body case-intro reveal">One example of what we've built, in full. The integrations and the purpose change with every business; the approach stays the same.</p>
       <div class="case-study reveal">
         <div class="case-study-label">Residential Development Company — Vancouver, BC</div>
         <p class="case-quote">From inbox to the right budget line in a single tap.</p>
         <div class="case-study-grid">
           <div class="case-study-col">
             <h4>The problem</h4>
-            <p>Invoices arrived by email across multiple active projects. Each one meant reading the paperwork, pulling out the details, entering them into the right budget by hand — and hoping overruns got noticed before they became expensive.</p>
+            <p>Invoices arrived by email across multiple active projects. Each one meant reading the paperwork, pulling out the details, entering them into the right budget by hand, and hoping overruns got noticed before they became expensive.</p>
           </div>
           <div class="case-study-col">
             <h4>What we built</h4>
@@ -1324,42 +1436,13 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- WHAT MAKES US DIFFERENT -->
-  <section>
-    <div class="wrap">
-      <p class="section-label reveal">What Makes Us Different</p>
-      <h2 class="section-headline reveal">The difference between buying software and having your own system.</h2>
-      <div class="diff-table reveal reveal-d1">
-        <div class="diff-row diff-head">
-          <div>Off-the-shelf tools</div>
-          <div>An Arbutus Labs system</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">Built for the average business. You adapt your process to fit the tool.</div>
-          <div class="diff-us">Built around your process, your vendors, and your rules.</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">One more place to log in and check.</div>
-          <div class="diff-us">Works inside your inbox, spreadsheets, and team chat.</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">AI assistants like ChatGPT or Claude wait for you to ask.</div>
-          <div class="diff-us">Runs on its own. It watches the inbox, files paperwork, and updates records, asking only when your judgment is needed.</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">Automates everything or nothing.</div>
-          <div class="diff-us">Acts where it's confident and brings you the decision where it isn't.</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">One tool per problem.</div>
-          <div class="diff-us">One system that takes on new purposes as needs surface.</div>
-        </div>
-        <div class="diff-row">
-          <div class="diff-soft">Support tickets and version updates.</div>
-          <div class="diff-us">The person who built your system maintains it and grows it, month over month.</div>
+      <div class="subsection reveal">
+        <p class="section-label">Other Examples</p>
+        <div class="example-list">
+          <div class="example-item"><strong>Drafted replies.</strong> Client questions answered from your own files and records, ready for you to review and send.</div>
+          <div class="example-item"><strong>Deadline tracking.</strong> Contracts, permits, and renewals surfaced in time, with the context and next step attached.</div>
+          <div class="example-item"><strong>Reporting on demand.</strong> Ask how a project or the month is tracking and get a clear summary pulled from your connected tools.</div>
         </div>
       </div>
     </div>
