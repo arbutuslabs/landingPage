@@ -1682,5 +1682,17 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
+  <script>
+    // Contact click tracking (GA4): phone and email links
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+      if (!a || typeof gtag !== 'function') return;
+      var isPhone = a.getAttribute('href').indexOf('tel:') === 0;
+      gtag('event', isPhone ? 'contact_phone_click' : 'contact_email_click', {
+        link_url: a.getAttribute('href'),
+        transport_type: 'beacon'
+      });
+    });
+  </script>
 </body>
 </html>
