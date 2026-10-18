@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant Setup: Pricing and Process | Arbutus Labs</title>
+  <meta name="description" content="Our process and pricing for AI assistant setup in the Lower Mainland: one use case at a time, paid in phases, with ongoing support only if you need it." />
+  <meta name="robots" content="noindex, nofollow" /><!-- DRAFT: remove this line when the page is approved -->
+  <link rel="canonical" href="https://arbutuslabs.ca/pricing-and-process" />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #fefefe;
+      --tint:     #F7F5F0;
+      --primary:  #2D3B28;
+      --accent:   #B85530;
+      --muted:    #5C6B57;
+      --border:   #D6CFC2;
+    }
+
+    html { scroll-behavior: smooth; }
+    :target { scroll-margin-top: 110px; }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    .narrow { max-width: 760px; }
+
+    /* DRAFT BANNER (delete the element in the HTML when approved) */
+    .draft-banner {
+      background: var(--accent);
+      color: var(--bg);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.55rem 1rem;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(254, 254, 254, 0.92);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1.5rem; padding-bottom: 1.5rem;
+    }
+    nav img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links .btn { padding: 0.6rem 1.4rem; color: var(--bg); }
+    .nav-links .btn:hover { transform: none; box-shadow: none; color: var(--bg); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block; background: var(--primary); color: var(--bg);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border: none; cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn:hover { background: #55544E; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(60,60,55,0.18); }
+    .text-link {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); text-decoration: underline; text-underline-offset: 4px;
+      margin-left: 2rem; transition: color 0.3s ease;
+    }
+    .text-link:hover { color: var(--primary); }
+
+    /* TYPE */
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent);
+      margin-right: 0.75rem; vertical-align: middle;
+    }
+    .section-headline {
+      font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 38px; line-height: 1.25;
+      letter-spacing: 0.01em; color: var(--primary); max-width: 17em; margin-bottom: 1.75rem;
+    }
+    .section-body { font-size: 17px; line-height: 1.75; color: var(--muted); max-width: 34em; }
+    .section-body + .section-body { margin-top: 1.1rem; }
+
+    section { padding: 5rem 0; }
+    section.tinted { background: var(--tint); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 6rem 0 4rem; }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 500;
+      font-size: clamp(34px, 4.5vw + 18px, 56px); line-height: 1.1; letter-spacing: 0.01em;
+      color: var(--primary); max-width: 16em; margin-bottom: 1.75rem;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--accent); }
+    .page-hero p.lede { font-size: 18px; line-height: 1.75; color: var(--muted); max-width: 34em; margin-bottom: 2.5rem; }
+
+    /* STEPS */
+    .steps { list-style: none; counter-reset: step; margin-top: 2.5rem; border-top: 1px solid var(--border); }
+    .steps li {
+      counter-increment: step; display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem;
+      padding: 1.75rem 0; border-bottom: 1px solid var(--border);
+    }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--accent); line-height: 1;
+    }
+    .steps h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; margin-bottom: 0.4rem; color: var(--primary); }
+    .steps p { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 40em; }
+
+    /* PRICING */
+    .price-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; background: var(--bg); }
+    .price-table th {
+      text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); padding: 0.9rem 1rem; border-bottom: 1px solid var(--primary);
+    }
+    .price-table td { padding: 1.25rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 16px; line-height: 1.6; color: var(--muted); }
+    .price-table td:first-child { color: var(--primary); font-weight: 500; width: 30%; }
+    .price-table td.price { white-space: nowrap; color: var(--primary); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; text-align: right; }
+    .price-table th.price { text-align: right; white-space: nowrap; }
+    .price-table .opt { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.1rem 0.45rem; margin-left: 0.5rem; vertical-align: middle; }
+    .price-note { margin-top: 1.25rem; font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 44em; }
+
+    /* CARDS */
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .card { background: var(--bg); border: 1px solid var(--border); padding: 1.75rem; }
+    .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin-bottom: 0.5rem; color: var(--primary); }
+    .card p { font-size: 15.5px; line-height: 1.7; color: var(--muted); }
+
+    /* FAQ */
+    .faq { margin-top: 2.5rem; border-top: 1px solid var(--border); max-width: 760px; }
+    .faq details { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+    .faq summary { cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--primary); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; color: var(--accent); font-size: 24px; line-height: 1; }
+    .faq details[open] summary::after { content: '\2212'; }
+    .faq details p { margin-top: 0.9rem; font-size: 16px; line-height: 1.75; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-section { padding: 6rem 0; }
+    .contact-email {
+      display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+      color: var(--primary); margin: 2rem 0 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+    .contact-meta { font-size: 13px; line-height: 1.9; color: var(--muted); }
+    .contact-meta a:hover { color: var(--primary); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: var(--tint); padding: 3.5rem 0; }
+    footer .wrap { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; }
+    footer .wordmark { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; letter-spacing: 0.1em; color: var(--primary); }
+    .footer-tagline { font-size: 12px; color: var(--muted); margin-top: 0.4rem; max-width: 320px; }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; font-size: 12px; color: var(--muted); }
+    .footer-contact a:hover { color: var(--primary); }
+
+    /* MOBILE */
+    @media (max-width: 760px) {
+      .wrap { padding: 0 1.5rem; }
+      nav .wrap { padding-top: 1rem; padding-bottom: 1rem; }
+      nav img { height: 40px; }
+      .nav-links a:not(.btn) { display: none; }
+      .nav-links .btn { padding: 0.55rem 1rem; font-size: 11px; }
+      section { padding: 3.5rem 0; }
+      .page-hero { padding: 3.5rem 0 2.5rem; }
+      .section-headline { font-size: 30px; }
+      .steps li { grid-template-columns: 2.5rem 1fr; gap: 0.75rem; }
+      .cards { grid-template-columns: 1fr; }
+      .price-table thead { display: none; }
+      .price-table, .price-table tbody, .price-table tr, .price-table td { display: block; width: 100%; }
+      .price-table tr { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+      .price-table td { border: 0; padding: 0.15rem 0.25rem; }
+      .price-table td:first-child { width: 100%; }
+      .price-table td.price { text-align: left; font-size: 20px; margin-top: 0.4rem; }
+      .text-link { margin-left: 0; display: block; margin-top: 1.25rem; }
+      footer .wrap { flex-direction: column; }
+      .footer-contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="draft-banner">DRAFT PREVIEW: prices, timelines and wording are placeholders for review. Not indexed by search engines.</div>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" aria-label="Arbutus Labs home"><img src="assets/logo.png" alt="Arbutus Labs, AI consulting and automation in Vancouver, BC" /></a>
+      <div class="nav-links">
+        <a href="index.html#system">Approach</a>
+        <a href="index.html#case">In Practice</a>
+        <a href="#contact" class="btn">Start a conversation</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section-label">Pricing &amp; Process</p>
+      <h1>How AI assistant setup works, <em>and what it costs.</em></h1>
+      <p class="lede">We pick the one task worth automating first, build it, test it on your real work, and you pay in phases. Each phase is its own decision, so you only move on when the last one is paying off.</p>
+      <a href="#contact" class="btn">Book a conversation</a>
+      <a href="#pricing" class="text-link">See pricing</a>
+    </div>
+  </header>
+
+  <section class="tinted" id="process">
+    <div class="wrap">
+      <p class="section-label">The Process</p>
+      <h2 class="section-headline">From first meeting to a working assistant.</h2>
+      <p class="section-body">Most clients start with a single use case, such as invoicing or scheduling. Here is how that goes, step by step.</p>
+      <ol class="steps">
+        <li><div>
+          <h3>We meet</h3>
+          <p>In person anywhere in the Lower Mainland, or by video or phone. We learn how your business runs: your inbox, your tools, and where your time goes.</p>
+        </div></li>
+        <li><div>
+          <h3>We choose your first use case</h3>
+          <p>We narrow the list down to the one task that gives you the most back, and plan the later ones at the same time. That way the first choices we make never get in the way of what you add next.</p>
+        </div></li>
+        <li><div>
+          <h3>We research and choose the tools</h3>
+          <p>We test the options first. Where an existing tool does the job, we set that up around your workflow. Where nothing fits, we build something from scratch.</p>
+        </div></li>
+        <li><div>
+          <h3>Deposit, then we start</h3>
+          <p>Work begins once the deposit is in. The deposit is credited toward the final bill for that phase.</p>
+        </div></li>
+        <li><div>
+          <h3>We integrate it</h3>
+          <p>We connect the assistant to the tools you already use, such as your email, calendar and invoicing, so nothing about how you work has to change.</p>
+        </div></li>
+        <li><div>
+          <h3>We test it on your real work</h3>
+          <p>Your own invoices, emails and schedule, before anything goes live. Nothing is sent without your approval.</p>
+        </div></li>
+        <li><div>
+          <h3>We finish, then final payment</h3>
+          <p>You review the result. When it works the way you expect, you pay the balance for that phase.</p>
+        </div></li>
+        <li><div>
+          <h3>Then, if it is paying off, the next use case</h3>
+          <p>Each new integration repeats the same steps. You are never committed to more than the phase in front of you.</p>
+        </div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-headline">Paid in phases, not up front.</h2>
+      <p class="section-body">These are typical prices in Canadian dollars. Your exact figure depends on the tools involved, and we confirm it in writing before any work starts.</p>
+      <table class="price-table">
+        <thead><tr><th>Phase</th><th>What you get</th><th class="price">Price (CAD)</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery deposit</td><td>We map your workflow, research and choose the right tools, and test them on your real examples. The amount depends on how much research your project needs. Credited toward your build.</td><td class="price">$300 to $500</td></tr>
+          <tr><td>Standard setup</td><td>The task that gives you the most time back, set up and tested on your real work. Common examples: drafting invoices from email, sorting and replying to messages, or booking appointments. You approve before anything is sent. This is the price for smaller-scale businesses.</td><td class="price">From $1,200</td></tr>
+          <tr><td>Integrations and custom builds</td><td>Several tools connected together, or something built from scratch where nothing off the shelf fits, including custom connections for AI tools such as MCP servers. Quoted in writing after discovery.</td><td class="price">Up to $3,500</td></tr>
+        </tbody>
+      </table>
+      <p class="price-note">Most projects land between <strong>$1,200 and $3,500</strong>. Software subscriptions and text message fees are paid directly by you at cost, with no markup from us.</p>
+    </div>
+  </section>
+
+  <section class="tinted" id="support">
+    <div class="wrap">
+      <p class="section-label">After It Is Running</p>
+      <h2 class="section-headline">Ongoing support, only if you need it.</h2>
+      <p class="section-body">Some setups run on their own. Others benefit from someone keeping an eye on them. If yours does, we discuss a monthly retainer once the assistant is up and running. It is never required, and you can stop at any time.</p>
+      <p class="section-body">Ongoing support starts at <strong>$500 per month</strong>. It usually covers fixes, small changes as your business changes, and a regular check-in.</p>
+    </div>
+  </section>
+
+  <section id="how-we-work">
+    <div class="wrap">
+      <p class="section-label">How We Work</p>
+      <h2 class="section-headline">What you can expect from us.</h2>
+      <div class="cards">
+        <div class="card"><h3>Existing tools first</h3><p>We build custom only when nothing off the shelf fits. That keeps your cost down and your setup simple.</p></div>
+        <div class="card"><h3>You approve everything</h3><p>The assistant drafts and prepares. Nothing is sent to a client or customer until you say so.</p></div>
+        <div class="card"><h3>You own it</h3><p>The accounts, data and tools stay yours. If we ever stop working together, you keep what we built.</p></div>
+        <div class="card"><h3>Your data stays in your accounts</h3><p>We follow BC and Canadian privacy rules (PIPA and PIPEDA) and tell you plainly where your information goes.</p></div>
+        <div class="card"><h3>In person when you want it</h3><p>We can meet anywhere in the Lower Mainland, including Vancouver, Burnaby, Richmond, Surrey, Langley and the North Shore.</p></div>
+        <div class="card"><h3>An honest answer</h3><p>If AI is not the right fit for your business, we say so. In that case you only pay for discovery.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" id="faq">
+    <div class="wrap">
+      <p class="section-label">Questions</p>
+      <h2 class="section-headline">Common questions.</h2>
+      <div class="faq">
+        <details><summary>How much does it cost to set up an AI assistant for a small business?</summary><p>Most single-task setups, such as invoicing, start around $1,200 after a $300 to $500 discovery deposit. Larger projects with several integrations or custom builds go up to about $3,500. You see the figure in writing before work begins.</p></details>
+        <details><summary>Do I have to commit to everything up front?</summary><p>No. Each phase is its own decision. You pay a deposit, we build and test, you approve, and you pay the balance. Then you choose whether to continue.</p></details>
+        <details><summary>Do I need new software, or does it work with what I already use?</summary><p>It works with what you already use, such as Gmail and Google Calendar. We only suggest new tools when they clearly save you time.</p></details>
+        <details><summary>Will it send anything without my approval?</summary><p>No. By default the assistant drafts and you approve before anything goes out.</p></details>
+        <details><summary>Is it safe to give an AI assistant access to my business email?</summary><p>It can be, if it is set up carefully. We limit what it can access, keep your data in your own accounts, and explain exactly what it can and cannot do before you agree.</p></details>
+        <details><summary>Can you meet in person?</summary><p>Yes, anywhere in the Lower Mainland. We can also work by video or phone.</p></details>
+        <details><summary>What if I only need help picking a tool?</summary><p>That works. Many people only need a recommendation and a short setup session. We will tell you honestly if an existing tool is all you need.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="wrap">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-headline">Start with a conversation.</h2>
+      <p class="section-body">A short call, or a coffee in the Lower Mainland, about how your business runs and where an assistant could take work off your hands. If it is not a fit, we will say so.</p>
+      <div>
+        <a href="mailto:tyson@arbutuslabs.ca" class="contact-email">tyson@arbutuslabs.ca</a>
+        <p class="contact-meta">
+          <a href="tel:+12369791818">(236) 979-1818</a> &middot; call or text<br />
+          Vancouver, BC &middot; Serving the Lower Mainland
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div class="wordmark">ARBUTUS LABS</div>
+        <p class="footer-tagline">Practical AI systems, built inside the tools you already use.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:tyson@arbutuslabs.ca">tyson@arbutuslabs.ca</a>
+        <a href="tel:+12369791818">(236) 979-1818</a>
+        <span>Vancouver, BC &middot; Serving the Lower Mainland</span>
+        <span>&copy; 2026 Arbutus Labs</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
