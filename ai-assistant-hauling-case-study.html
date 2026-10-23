@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hauling Company AI Assistant Case Study | Arbutus Labs</title>
+  <meta name="description" content="How a Lower Mainland hauling company got an AI assistant that drafts invoices from job emails, books jobs, and takes voice requests from the truck, with approval before anything is sent." />
+  <link rel="canonical" href="https://arbutuslabs.ca/ai-assistant-hauling-case-study" />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #fefefe;
+      --tint:     #F7F5F0;
+      --primary:  #2D3B28;
+      --accent:   #B85530;
+      --muted:    #5C6B57;
+      --border:   #D6CFC2;
+    }
+
+    html { scroll-behavior: smooth; }
+    :target { scroll-margin-top: 110px; }
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    body {
+      background: var(--bg);
+      color: var(--primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    .narrow { max-width: 760px; }
+
+    /* DRAFT BANNER (delete the element in the HTML when approved) */
+    .draft-banner {
+      background: var(--accent);
+      color: var(--bg);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.55rem 1rem;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(254, 254, 254, 0.92);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1.5rem; padding-bottom: 1.5rem;
+    }
+    nav img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links .btn { padding: 0.6rem 1.4rem; color: var(--bg); }
+    .nav-links .btn:hover { transform: none; box-shadow: none; color: var(--bg); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block; background: var(--primary); color: var(--bg);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border: none; cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn:hover { background: #55544E; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(60,60,55,0.18); }
+    .text-link {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); text-decoration: underline; text-underline-offset: 4px;
+      margin-left: 2rem; transition: color 0.3s ease;
+    }
+    .text-link:hover { color: var(--primary); }
+
+    /* TYPE */
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent);
+      margin-right: 0.75rem; vertical-align: middle;
+    }
+    .section-headline {
+      font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 38px; line-height: 1.25;
+      letter-spacing: 0.01em; color: var(--primary); max-width: 17em; margin-bottom: 1.75rem;
+    }
+    .section-body { font-size: 17px; line-height: 1.75; color: var(--muted); max-width: 34em; }
+    .section-body + .section-body { margin-top: 1.1rem; }
+
+    section { padding: 5rem 0; }
+    section.tinted { background: var(--tint); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 6rem 0 4rem; }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 500;
+      font-size: clamp(34px, 4.5vw + 18px, 56px); line-height: 1.1; letter-spacing: 0.01em;
+      color: var(--primary); max-width: 16em; margin-bottom: 1.75rem;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--accent); }
+    .page-hero p.lede { font-size: 18px; line-height: 1.75; color: var(--muted); max-width: 34em; margin-bottom: 2.5rem; }
+
+    /* STEPS */
+    .steps { list-style: none; counter-reset: step; margin-top: 2.5rem; border-top: 1px solid var(--border); }
+    .steps li {
+      counter-increment: step; display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem;
+      padding: 1.75rem 0; border-bottom: 1px solid var(--border);
+    }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--accent); line-height: 1;
+    }
+    .steps h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; margin-bottom: 0.4rem; color: var(--primary); }
+    .steps p { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 40em; }
+
+    /* PRICING */
+    .price-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; background: var(--bg); }
+    .price-table th {
+      text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); padding: 0.9rem 1rem; border-bottom: 1px solid var(--primary);
+    }
+    .price-table td { padding: 1.25rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 16px; line-height: 1.6; color: var(--muted); }
+    .price-table td:first-child { color: var(--primary); font-weight: 500; width: 30%; }
+    .price-table td.price { white-space: nowrap; color: var(--primary); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; text-align: right; }
+    .price-table th.price { text-align: right; white-space: nowrap; }
+    .price-table .opt { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.1rem 0.45rem; margin-left: 0.5rem; vertical-align: middle; }
+    .price-note { margin-top: 1.25rem; font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 44em; }
+
+    /* CARDS */
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .card { background: var(--bg); border: 1px solid var(--border); padding: 1.75rem; }
+    .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin-bottom: 0.5rem; color: var(--primary); }
+    .card p { font-size: 15.5px; line-height: 1.7; color: var(--muted); }
+
+    /* FAQ */
+    .faq { margin-top: 2.5rem; border-top: 1px solid var(--border); max-width: 760px; }
+    .faq details { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+    .faq summary { cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--primary); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; color: var(--accent); font-size: 24px; line-height: 1; }
+    .faq details[open] summary::after { content: '\2212'; }
+    .faq details p { margin-top: 0.9rem; font-size: 16px; line-height: 1.75; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-section { padding: 6rem 0; }
+    .contact-email {
+      display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500;
+      color: var(--primary); margin: 2rem 0 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+    .contact-meta { font-size: 13px; line-height: 1.9; color: var(--muted); }
+    .contact-meta a:hover { color: var(--primary); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: var(--tint); padding: 3.5rem 0; }
+    footer .wrap { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; }
+    footer .wordmark { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; letter-spacing: 0.1em; color: var(--primary); }
+    .footer-tagline { font-size: 12px; color: var(--muted); margin-top: 0.4rem; max-width: 320px; }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.35rem; text-align: right; font-size: 12px; color: var(--muted); }
+    .footer-contact a:hover { color: var(--primary); }
+
+    /* MOBILE */
+    @media (max-width: 760px) {
+      .wrap { padding: 0 1.5rem; }
+      nav .wrap { padding-top: 1rem; padding-bottom: 1rem; }
+      nav img { height: 40px; }
+      .nav-links a:not(.btn) { display: none; }
+      .nav-links .btn { padding: 0.55rem 1rem; font-size: 11px; }
+      section { padding: 3.5rem 0; }
+      .page-hero { padding: 3.5rem 0 2.5rem; }
+      .section-headline { font-size: 30px; }
+      .steps li { grid-template-columns: 2.5rem 1fr; gap: 0.75rem; }
+      .cards { grid-template-columns: 1fr; }
+      .price-table thead { display: none; }
+      .price-table, .price-table tbody, .price-table tr, .price-table td { display: block; width: 100%; }
+      .price-table tr { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+      .price-table td { border: 0; padding: 0.15rem 0.25rem; }
+      .price-table td:first-child { width: 100%; }
+      .price-table td.price { text-align: left; font-size: 20px; margin-top: 0.4rem; }
+      .text-link { margin-left: 0; display: block; margin-top: 1.25rem; }
+      footer .wrap { flex-direction: column; }
+      .footer-contact { text-align: left; }
+    }
+
+    /* CASE STUDY */
+    .summary {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem;
+      border-top: 1px solid var(--primary); border-bottom: 1px solid var(--border);
+    }
+    .summary div { padding: 1.25rem 1.25rem 1.25rem 0; }
+    .summary .k { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .summary .v { font-size: 16px; line-height: 1.5; color: var(--primary); font-weight: 500; }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .flow div { border-top: 2px solid var(--accent); padding-top: 1rem; }
+    .flow .n { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+    .flow h3 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 500; margin-bottom: 0.35rem; }
+    .flow p { font-size: 15px; line-height: 1.65; color: var(--muted); }
+    .pull { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 30px; line-height: 1.35; color: var(--primary); max-width: 24em; border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-top: 2.5rem; }
+    .tools { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .tools span { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); border: 1px solid var(--border); background: var(--bg); padding: 0.45rem 0.8rem; }
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: 1fr 1fr; }
+      .flow { grid-template-columns: 1fr; }
+      .pull { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" aria-label="Arbutus Labs home"><img src="assets/logo.png" alt="Arbutus Labs, AI consulting and automation in Vancouver, BC" /></a>
+      <div class="nav-links">
+        <a href="index.html#process">How It Works</a>
+        <a href="index.html#case">Example</a>
+        <a href="#contact" class="btn">Start a conversation</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section-label">Case Study</p>
+      <h1>An AI assistant that invoices and schedules <em>for a hauling company.</em></h1>
+      <p class="lede">A Lower Mainland hauling company spent its evenings turning job emails into invoices and juggling bookings between loads. We set up an AI assistant that drafts every invoice from the job email, books jobs, handles texts, and takes voice requests from the truck. The owner approves everything before it goes out.</p>
+      <div class="summary">
+        <div><p class="k">Industry</p><p class="v">Hauling and logistics</p></div>
+        <div><p class="k">Location</p><p class="v">Lower Mainland, BC</p></div>
+        <div><p class="k">Main job</p><p class="v">Invoicing from email</p></div>
+        <div><p class="k">Approach</p><p class="v">Existing tools, set up and customized</p></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="tinted" id="problem">
+    <div class="wrap">
+      <p class="section-label">The Problem</p>
+      <h2 class="section-headline">Paperwork after a full day of driving.</h2>
+      <p class="section-body">Every job arrived by email. Each one had to be read, typed into an invoice by hand, and sent, usually at the end of a long day. Bookings, client texts and follow-ups all had to wait until the truck was parked, and overdue invoices were easy to lose track of.</p>
+      <p class="section-body">The owner did not want new software to learn. He wanted the tools he already used to do more of the work.</p>
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="wrap">
+      <p class="section-label">What We Set Up</p>
+      <h2 class="section-headline">An assistant built around how the business already runs.</h2>
+      <div class="cards">
+        <div class="card"><h3>Invoices drafted from job emails</h3><p>When a job email comes in, the assistant pulls out the details and drafts the invoice in the company's own template, ready to approve.</p></div>
+        <div class="card"><h3>Overdue checks and summaries</h3><p>Scheduled checks flag unpaid invoices and send a short summary, so nothing slips.</p></div>
+        <div class="card"><h3>Voice requests from the truck</h3><p>Using a Siri Shortcut, the owner asks the assistant for what he needs, hands free, and hears the reply read aloud.</p></div>
+        <div class="card"><h3>Booking and reminders</h3><p>Jobs go straight into Google Calendar, with reminders set automatically.</p></div>
+        <div class="card"><h3>Texts with drafted replies</h3><p>Client texts come in with a reply already drafted. The owner approves it and it sends.</p></div>
+        <div class="card"><h3>Approval before anything is sent</h3><p>The assistant drafts and prepares. Nothing goes to a client until the owner says so.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" id="how">
+    <div class="wrap">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-headline">From job email to sent invoice.</h2>
+      <div class="flow">
+        <div><p class="n">01</p><h3>Job email arrives</h3><p>A customer or dispatcher emails the job details to the company inbox.</p></div>
+        <div><p class="n">02</p><h3>Assistant drafts the invoice</h3><p>It reads the email and fills in the company's invoice template.</p></div>
+        <div><p class="n">03</p><h3>Owner approves</h3><p>One look, one approval, from the office or by voice from the truck.</p></div>
+        <div><p class="n">04</p><h3>Sent and tracked</h3><p>The invoice goes out and is watched until it is paid.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="wrap">
+      <p class="section-label">Our Approach</p>
+      <h2 class="section-headline">Existing tools first, built in phases.</h2>
+      <p class="section-body">We met in person, mapped how jobs and invoices actually moved through the business, and tested on real invoices before anything went live. Instead of building new software, we set up and customized tools the company could keep using on its own accounts.</p>
+      <div class="tools"><span>Gmail</span><span>Google Calendar</span><span>Siri Shortcuts</span><span>Twilio text messaging</span><span>ChatGPT or Claude</span></div>
+      <p class="section-body" style="margin-top:1.5rem">The work was delivered one phase at a time, starting with invoicing. Each phase was its own decision, and software and text fees are paid directly by the company at cost.</p>
+    </div>
+  </section>
+
+  <section class="tinted" id="result">
+    <div class="wrap">
+      <p class="section-label">The Result</p>
+      <h2 class="section-headline">Invoices go out without the evening paperwork.</h2>
+      <p class="section-body">Invoices are drafted the moment a job email lands, bookings and texts are handled from the road, and overdue invoices are flagged automatically. The owner keeps every decision. The assistant does the typing.</p>
+      <!-- Add real numbers here once confirmed with the client, for example hours saved per week or days from job to invoice. -->
+      <p class="pull">Approve an invoice by voice from the truck, and it is out before the next load.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="section-label">Questions</p>
+      <h2 class="section-headline">Common questions about this setup.</h2>
+      <div class="faq">
+        <details><summary>Can an AI assistant create invoices from my emails?</summary><p>Yes. It reads each job email, pulls out the details and drafts an invoice in your own template. You approve it before it is sent.</p></details>
+        <details><summary>Can I use it by voice while I drive?</summary><p>Yes. A Siri Shortcut lets you make requests hands free and hear the reply read aloud, so you can approve or ask for things without picking up your phone.</p></details>
+        <details><summary>Does it send anything without my approval?</summary><p>No. The assistant drafts invoices and replies. Nothing goes out until you approve it.</p></details>
+        <details><summary>Do I need new software?</summary><p>No. It works with tools you likely already use, such as Gmail and Google Calendar. Subscriptions stay in your name and you pay them at cost.</p></details>
+        <details><summary>What does a setup like this cost?</summary><p>A single use case such as invoicing starts from about $1,200 after a discovery deposit, and larger setups with several integrations go up to about $3,500. See <a href="pricing-and-process.html" style="color:var(--accent);text-decoration:underline">pricing and process</a> for details.</p></details>
+        <details><summary>Do you work with hauling companies outside Vancouver?</summary><p>Yes. We meet in person anywhere in the Lower Mainland, including Surrey, Langley, Burnaby, Richmond and Coquitlam, and work remotely across BC.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="wrap">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-headline">Want this for your business?</h2>
+      <p class="section-body">A short call, or a coffee in the Lower Mainland, about how your business runs and where an assistant could take work off your hands. If it is not a fit, we will say so.</p>
+      <div>
+        <a href="mailto:tyson@arbutuslabs.ca" class="contact-email">tyson@arbutuslabs.ca</a>
+        <p class="contact-meta">
+          <a href="tel:+12369791818">(236) 979-1818</a> &middot; call or text<br />
+          Vancouver, BC &middot; Serving the Lower Mainland
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div class="wordmark">ARBUTUS LABS</div>
+        <p class="footer-tagline">Practical AI systems, built inside the tools you already use.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:tyson@arbutuslabs.ca">tyson@arbutuslabs.ca</a>
+        <a href="tel:+12369791818">(236) 979-1818</a>
+        <span>Vancouver, BC &middot; Serving the Lower Mainland</span>
+        <span>&copy; 2026 Arbutus Labs</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
